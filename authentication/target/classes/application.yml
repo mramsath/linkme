@@ -1,0 +1,72 @@
+
+spring:
+  application:
+     name: LMW-LIS-COMMUNICATION
+  profiles:
+    active:
+    - dev
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/CSI-LMW_DB1
+    username: postgres
+    password: csi@2017
+    tomcat.max-wait: 20000
+    tomcat.max-active: 50
+    tomcat.max-idle: 20
+    tomcat.min-idle: 15
+
+  jpa:
+    hibernate:
+      database: POSTGRESQL
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      id.new_generator_mappings: false
+      format_sql: true
+    properties:
+        hibernate.enable_lazy_load_no_trans: true
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+#request:
+#  queue: request-queue
+#  routingKey: request
+#
+#response:
+#  queue: response-queue
+#  routingKey: response-key
+
+server.port: 8899
+
+jwt.secret: jwtsecret
+
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.requestType.descriptor.sql.BasicBinder: TRACE
+
+#logging
+logging.level.org.springframework.data: debug
+logging.level: info
+
+management.security.enabled: false
+security.basic.enabled: false
+
+#lab.result.url=https://reqres.in/api/users
+lab.result.url: crated3DNrYPUrDPuLTfroBh25
+
+llp:
+  server.port: 8384
+  remote.port: 9393
+  remote.ip: 127.0.0.1
+
+tcp:
+  socket:
+    ip: 192.168.127.253
+    port: 8001
+
+boss.thread.count: 4
+worker.thread.count: 4
+so.keepalive: true
+so.backlog: 100
