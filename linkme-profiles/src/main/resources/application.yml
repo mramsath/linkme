@@ -1,0 +1,30 @@
+server:
+    port: 9001
+
+spring:
+  application:
+     name: linkme-core
+  profiles:
+    active:
+    - dev
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/linkme
+    username: postgres
+    password: postgres
+
+    tomcat.max-wait: 20000
+    tomcat.max-active: 50
+    tomcat.max-idle: 20
+    tomcat.min-idle: 15
+
+  jpa:
+    hibernate:
+      database: POSTGRESQL
+      ddl-auto: update
+#      dialect: org.hibernate.dialect.PostgreSQLDialect
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      id.new_generator_mappings: false
+      format_sql: false
+    properties:
+        hibernate.enable_lazy_load_no_trans: true

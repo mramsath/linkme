@@ -1,0 +1,66 @@
+
+spring:
+  application:
+     name: linkme-authentication
+  profiles:
+    active:
+    - dev
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/linkme
+    username: postgres
+    password: postgres
+
+    tomcat.max-wait: 20000
+    tomcat.max-active: 50
+    tomcat.max-idle: 20
+    tomcat.min-idle: 15
+
+  jpa:
+    hibernate:
+      database: POSTGRESQL
+      ddl-auto: update
+#      dialect: org.hibernate.dialect.PostgreSQLDialect
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      id.new_generator_mappings: false
+      format_sql: false
+    properties:
+        hibernate.enable_lazy_load_no_trans: true
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+#request:
+#  queue: request-queue
+#  routingKey: request
+#
+#response:
+#  queue: response-queue
+#  routingKey: response-key
+
+server.port: 8899
+
+jwt.secret: jwtsecret
+
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.requestType.descriptor.sql.BasicBinder: TRACE
+
+#logging
+logging.level.org.springframework.data: debug
+logging.level: info
+
+management.security.enabled: false
+security.basic.enabled: false
+
+#lab.result.url=https://reqres.in/api/users
+lab.result.url: crated3DNrYPUrDPuLTfroBh25
+
+
+
+boss.thread.count: 4
+worker.thread.count: 4
+so.keepalive: true
+so.backlog: 100
