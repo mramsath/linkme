@@ -1,0 +1,20 @@
+#---
+#spring:
+#  application:
+#    name: linkme-feeds
+#  profiles:
+#    active: dev
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true # This is required
+#        serviceId: configserver # Config Server's eureka registry name
+#      enabled: true
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#        defaultZone: http://localhost:8761/eureka/
+#
+#management.endpoints.web.exposure.include: refresh
+#...
