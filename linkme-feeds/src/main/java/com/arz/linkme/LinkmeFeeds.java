@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+//import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @EnableMongoRepositories(basePackages = "com.arz.linkme.feeds.repo")
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 class LinkmeFeeds
 {
     public static void main( String[] args )

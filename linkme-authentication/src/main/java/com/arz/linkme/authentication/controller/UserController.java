@@ -7,7 +7,10 @@ import com.arz.linkme.authentication.model.RegistrationRequest;
 import com.arz.linkme.authentication.model.UserDetailResponse;
 import com.arz.linkme.authentication.model.db.User;
 import com.arz.linkme.authentication.service.JwtTokenUtil;
+import com.arz.linkme.authentication.service.TopicProducer;
 import com.arz.linkme.authentication.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +38,11 @@ public class UserController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    TopicProducer topicProducer;
+
+    ObjectMapper Obj = new ObjectMapper();
 
 //    @Autowired
 //    private JwtUserDetailsService userDetailsService;
@@ -95,19 +103,25 @@ public class UserController {
         //String response= testOrderGenerator.generateTestOrder(labOrderRequest);
 
        // String response=userRegistrationService.registerUser(user);
-        User user = userService.registerNewUser(regDetails);
+
+//        User user = userService.registerNewUser(regDetails);
+        try {
+            topicProducer.send( Obj.writeValueAsString(regDetails));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
 
         HttpHeaders httpHeaders = new HttpHeaders();
         //httpHeaders.add("Access-Control-Allow-Origin", "*");
         httpHeaders.add("Content-Type", "application/json");
-
-        if(user!=null){
-            return new ResponseEntity<>( new UserDetailResponse(0, "Success"), httpHeaders, HttpStatus.OK);
-        }
-        else{
-            return new ResponseEntity<>(new UserDetailResponse(1, "Failure"),httpHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>( new UserDetailResponse(0, "Success"), httpHeaders, HttpStatus.OK);
+//        if(user!=null){
+//            return new ResponseEntity<>( new UserDetailResponse(0, "Success"), httpHeaders, HttpStatus.OK);
+//        }
+//        else{
+//            return new ResponseEntity<>(new UserDetailResponse(1, "Failure"),httpHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
 
     }
 
